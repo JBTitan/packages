@@ -1,0 +1,17 @@
+#!/bin/sh /etc/rc.common
+# "new(er)" style init script
+# Look at /lib/functions/service.sh on a running system for explanations of what other SERVICE_
+# options you can use, and when you might want them.
+
+START=80
+APP=agent-proxy
+SERVICE_WRITE_PID=0
+SERVICE_DAEMONIZE=0
+
+start() {
+        service_start /usr/bin/$(APP) 1234 0 /dev/ttyGS0,115200
+}
+
+stop() {
+        service_stop /usr/bin/killall -TERM $(APP)
+}
